@@ -1,5 +1,8 @@
 # DATA STRUCTURE AND ALGORITHM
 
+These were that the assignments that we have done during our third semester of Engineering for the course Data Structure and Algorithm 2
+
+
 ## JON SNOW - THE KING OF NORTH
 
 Jon Snow is fighting with White walkers on a narrow bridge that connects north and south. Currently, on the bridge, there are three White walkers with health indexes a, b and c respectively. The health index is a positive integer that indicates how healthy is the white walker.
