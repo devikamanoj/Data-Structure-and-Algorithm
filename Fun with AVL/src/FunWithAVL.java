@@ -1,6 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.*;
-public class U4AIE20144_DSA2_assign2
+public class FunWithAVL
 {
     public static void main(String[] args)
     {
