@@ -1,4 +1,4 @@
-# DATA STRUCTURE AND ALGORITHM
+# DATA STRUCTURE AND ALGORITHM 2
 
 These were that the assignments that we have done during our third semester of Engineering for the course Data Structure and Algorithm 2
 
