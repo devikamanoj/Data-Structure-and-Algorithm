@@ -1,9 +1,11 @@
+import java.util.*;
 public class U4AIE20144_A3
 {
     public static void main(String args[])
     {
-        String txt = "AMALGAMATION";
-        String pat = "MAL";
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter testcases: ");
+        int TC = in.nextInt(); 
         KMP_Search obj = new KMP_Search();
         obj.KMPSearch(pat, txt);
     }
