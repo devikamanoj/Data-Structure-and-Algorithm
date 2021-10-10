@@ -5,9 +5,21 @@ public class U4AIE20144_A3
     {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter testcases: ");
-        int TC = in.nextInt(); 
-        KMP_Search obj = new KMP_Search();
-        obj.KMPSearch(pat, txt);
+        int TC = in.nextInt();
+        in.nextLine();
+        for(int i=0;i<=TC ; i++)
+        {
+            String mainString = in.nextLine();
+            mainString=mainString.replace(" ", "");
+
+            String matchStr = in.nextLine();
+            matchStr=matchStr.replace(" ", "");
+            System.out.println(mainString);
+            System.out.println(matchStr);
+            KMP_Search obj = new KMP_Search();
+            obj.KMPSearch(matchStr, mainString);
+        } 
+
     }
 }
 class KMP_Search
