@@ -16,7 +16,6 @@ public class U4AIE20144_A3
             KMP_Search obj = new KMP_Search();
            obj.PatternSearch(pattern, text);
         } 
-
     }
 }
 class KMP_Search
@@ -48,14 +47,9 @@ class KMP_Search
         String mat = printLCSubStr(txt, pattern,T,P);
         mat=mat.replace(" ", "");
         int index = text.indexOf(mat);
-        System.out.print(prefix(text, pat)+" ");
-        System.out.print(LCSubStr(txt, pattern,T,P)+" "); //3
-        if (LCSubStr(txt, pattern,T,P)==0)
-        {
-            System.out.println("-1");
-        }
-        else
-            System.out.println(index);
+        prefix(mat, pat,text);
+      /*  System.out.print(LCSubStr(txt, pattern,T,P)+" "); //3
+        System.out.println(index);*/
 
     }
     int LCSubStr(String[] s,String[] t,int n,int m)
@@ -129,28 +123,40 @@ class KMP_Search
         }
         return resultStr;
     }
-    int prefix(String txt, String pat)
+    void prefix(String txt, String pat,String text)
     {
-        int len=0;
+        int len = pat.length();
+        int ind = pat.indexOf(txt);
         boolean flag=false;
-        String str = "";
-        int n=pat.length();
-        for(int i=0;i<=n;i++)
+        String str="";
+        int ans=0;
+
+        System.out.println(ind);
+        if(ind==0) //starts from 0
         {
-            str=pat.substring(0,i);
-            if(txt.contains(str))
-            {
-                flag=true;
-                len=str.length();
-            }
-        }
-        if(flag==true)
-        {
-            return len;
+            ans = len-txt.length();
+            System.out.print(ans+" ");
         }
         else
         {
-            return 0;
+            for(int i=0;i<=len;i++)
+            {
+                str=pat.substring(0, i);
+                if(text.contains(str))
+                {
+                    flag=true;
+                    ans=str.length();
+                }
+            }
+            if(flag==true)
+            {
+                System.out.print(ans+" ");
+            }
+            else
+            {
+                System.out.print(ans+" ");
+            }
         }
+
     }
 }
