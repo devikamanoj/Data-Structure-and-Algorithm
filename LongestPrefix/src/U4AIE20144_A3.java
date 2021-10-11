@@ -1,4 +1,6 @@
 import java.util.*;
+
+import org.w3c.dom.Text;
 public class U4AIE20144_A3
 {
     public static void main(String args[])
@@ -7,84 +9,54 @@ public class U4AIE20144_A3
         System.out.println("Enter testcases: ");
         int TC = in.nextInt();
         in.nextLine();
-        for(int i=0;i<=TC ; i++)
+        for(int i=0;i<TC ; i++)
         {
-            String mainString = in.nextLine();
-            mainString=mainString.replace(" ", "");
+            String text = in.nextLine();
+            text=text.replace(" ", "");
 
-            String matchStr = in.nextLine();
-            matchStr=matchStr.replace(" ", "");
-            System.out.println(mainString);
-            System.out.println(matchStr);
+            String pattern = in.nextLine();
+            pattern=pattern.replace(" ", "");
             KMP_Search obj = new KMP_Search();
-            obj.KMPSearch(matchStr, mainString);
+           obj.PatternSearch(pattern, text);
         } 
 
     }
 }
 class KMP_Search
 {
-    void KMPSearch(String pat, String txt)
+    void PatternSearch(String pat, String text)
     {
-        int M = pat.length();
-        int N = txt.length();
-  
-        int lps[] = new int[M];
-        int j = 0; 
+        int T = text.length();
+        int P = pat.length();
+        String [] txt = new String [T];
+        String [] pattern = new String[P];
 
-        computeLPSArray(pat, M, lps);
-  
-        int i = 0;
-        while (i < N) 
+        //inserting the text into an array
+        for (int i = 0; i < T; i++) 
         {
-            if (pat.charAt(j) == txt.charAt(i)) 
+            txt[i]=text.charAt(i) + " ";
+        }
+
+        //inserting the pattern into an array
+        for (int i = 0; i < P; i++) 
+        {
+            pattern[i]=pat.charAt(i) + " ";
+        }
+
+        //pattern checking
+        for(int i =0; i<P;i++)
+        {
+            for(int j=0;j<T;j++)
             {
-                j++;
-                i++;
-            }
-            if (j == M) 
-            {
-                System.out.println((i - j));
-                j = lps[j - 1];
-            }
-            else if (i < N && pat.charAt(j) != txt.charAt(i)) 
-            {
-                if (j != 0)
+                if(pattern[i].equals(txt[j]))
                 {
-                    j = lps[j - 1];
-                }
-                else
-                {
-                    i = i + 1;
+                    System.out.println("Matching");
                 }
             }
         }
     }
-    void computeLPSArray(String pat, int M, int lps[])
+    void patternCheck(String [] txt, String [] pattern)
     {
-        int len = 0;
-        int i = 1;
-        lps[0] = 0;
-        while (i < M) 
-        {
-            if (pat.charAt(i) == pat.charAt(len))
-            {
-                len++;
-                lps[i] = len;
-                i++;
-            }
-            else
-            {
-                if (len != 0) 
-                {
-                    len = lps[len - 1];
-                }
-                else
-                {
-                    lps[i] = len;
-                    i++;
-                }
-            }
-        }
+        
     }
 }
