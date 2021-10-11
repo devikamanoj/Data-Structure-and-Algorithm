@@ -1,6 +1,4 @@
 import java.util.*;
-
-import org.w3c.dom.Text;
 public class U4AIE20144_A3
 {
     public static void main(String args[])
@@ -24,12 +22,16 @@ public class U4AIE20144_A3
 }
 class KMP_Search
 {
+    int T;
+    int P;
+    String [] txt;
+    String [] pattern;
     void PatternSearch(String pat, String text)
     {
-        int T = text.length();
-        int P = pat.length();
-        String [] txt = new String [T];
-        String [] pattern = new String[P];
+        T = text.length();
+        P = pat.length();
+        txt = new String [T];
+        pattern = new String[P];
 
         //inserting the text into an array
         for (int i = 0; i < T; i++) 
@@ -44,19 +46,26 @@ class KMP_Search
         }
 
         //pattern checking
-        for(int i =0; i<P;i++)
-        {
-            for(int j=0;j<T;j++)
-            {
-                if(pattern[i].equals(txt[j]))
-                {
-                    System.out.println("Matching");
-                }
-            }
-        }
+        patternCheck(txt, pattern);
     }
     void patternCheck(String [] txt, String [] pattern)
     {
-        
+        int i=0;
+        int j=0;
+        while(i<T)
+        {
+            while(j<P)
+            {
+                if(pattern[j].equals(txt[i]))
+                {
+                    System.out.println("Matching");
+                    j++;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
     }
 }
