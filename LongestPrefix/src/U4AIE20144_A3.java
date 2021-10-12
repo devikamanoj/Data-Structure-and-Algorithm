@@ -1,6 +1,8 @@
 import java.util.*;
 public class U4AIE20144_A3
 {
+    static String text;
+    static String pattern;
     public static void main(String args[])
     {
         Scanner in = new Scanner(System.in);
@@ -8,13 +10,20 @@ public class U4AIE20144_A3
         in.nextLine();
         for(int i=0;i<TC ; i++)
         {
-            String text = in.nextLine();
-            text=text.replace(" ", "");
+            text = in.nextLine();
+            pattern = in.nextLine();
 
-            String pattern = in.nextLine();
+            text=text.replace(" ", "");
             pattern=pattern.replace(" ", "");
+
+            text=text.replaceAll("[^a-zA-Z0-9]", "");
+	        pattern=pattern.replaceAll("[^a-zA-Z0-9]", "");
+
+            text=text.toLowerCase();
+            pattern=pattern.toLowerCase();
+
             KMP_Search obj = new KMP_Search();
-           obj.PatternSearch(pattern, text);
+            obj.PatternSearch(pattern, text);
         } 
     }
 }
@@ -24,7 +33,8 @@ class KMP_Search
     int P;
     String [] txt;
     String [] pattern;
-    int loc=0;
+    int loc; 
+    int len=0;
     void PatternSearch(String pat, String text)
     {
         T = text.length();
@@ -44,44 +54,27 @@ class KMP_Search
             pattern[i]=pat.charAt(i) + " ";
         }
 
-        String mat = printLCSubStr(txt, pattern,T,P);
+        String mat = FindLongSubStr(txt, pattern,T,P); //gets the longest patten
         mat=mat.replace(" ", "");
-        int index = text.indexOf(mat);
-        prefix(mat, pat,text);
-      /*  System.out.print(LCSubStr(txt, pattern,T,P)+" "); //3
-        System.out.println(index);*/
 
-    }
-    int LCSubStr(String[] s,String[] t,int n,int m)
-    { 
-        int dp[][]=new int[2][m+1];
-        int res=0;
-      
-        for(int i=1;i<=n;i++)
+        int index = text.indexOf(mat);
+        int a = FindPrefix(pattern); //finds the prefix
+        int b = mat.length(); //gets the length of the longest substring
+        if(b==0)
         {
-            for(int j=1;j<=m;j++)
-            {
-                if(s[(i-1)].equals(t[j-1]))
-                {
-                    dp[i%2][j]=dp[(i-1)%2][j-1]+1;
-                    if(dp[i%2][j]>res)
-                    {
-                        res=dp[i%2][j];
-                    }
-                }
-                else 
-                {
-                    dp[i%2][j]=0;
-                }
-            }
+            loc=-1;;
         }
-        return res;
+        else
+        {
+            loc=index;
+        }
+        System.out.println(a+" "+b+" "+loc);
     }
-    String printLCSubStr(String [] X, String [] Y, int m, int n)
+    String FindLongSubStr(String [] X, String [] Y, int m, int n)
     {
         int[][] LCSuff = new int[m + 1][n + 1];
  
-        int len = 0;
+        len = 0; //initialising len=0
  
         int row = 0, col = 0;
         for (int i = 0; i <= m; i++) 
@@ -123,40 +116,45 @@ class KMP_Search
         }
         return resultStr;
     }
-    void prefix(String txt, String pat,String text)
+	int FindPrefix(String[] s)
     {
-        int len = pat.length();
-        int ind = pat.indexOf(txt);
-        boolean flag=false;
-        String str="";
-        int ans=0;
-
-        System.out.println(ind);
-        if(ind==0) //starts from 0
+        int lps[] = new int[P];
+        lps[0] = 0;
+        len = 0;
+        int i = 1;
+        
+        while (i < P)
         {
-            ans = len-txt.length();
-            System.out.print(ans+" ");
-        }
-        else
-        {
-            for(int i=0;i<=len;i++)
+            if (s[i].equals(s[len]))
             {
-                str=pat.substring(0, i);
-                if(text.contains(str))
-                {
-                    flag=true;
-                    ans=str.length();
-                }
-            }
-            if(flag==true)
-            {
-                System.out.print(ans+" ");
+            	len++;
+                lps[i] = len;
+                i++;
             }
             else
             {
-                System.out.print(ans+" ");
+            	 if (len != 0)
+                 {
+                     len = lps[len-1];
+                 }
+                 else
+                 {
+                     lps[i] = 0;
+                     i++;
+                 }
             }
         }
-
+        int res=0;
+        int max=lps[0];
+        for (int k=1;k<P;k++)
+        {
+           
+            if(lps[k]>max)
+            {
+                max=lps[k];
+            }
+        }
+        res=max;
+        return res;
     }
 }
