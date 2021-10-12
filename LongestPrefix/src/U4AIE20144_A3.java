@@ -25,12 +25,14 @@ public class U4AIE20144_A3
             KMP_Search obj = new KMP_Search();
             obj.PatternSearch(pattern, text);
         } 
+        in.close();
     }
 }
 class KMP_Search
 {
     int T;
     int P;
+    int a;
     String [] txt;
     String [] pattern;
     int loc; 
@@ -53,12 +55,12 @@ class KMP_Search
         {
             pattern[i]=pat.charAt(i) + " ";
         }
-
-        String mat = FindLongSubStr(txt, pattern,T,P); //gets the longest patten
+        //FindLongSubStr(text, pat);
+        a = FindPrefix(pattern);
+        String mat = FindLongSubStr(text, pat); //gets the longest patten
         mat=mat.replace(" ", "");
 
         int index = text.indexOf(mat);
-        int a = FindPrefix(pattern); //finds the prefix
         int b = mat.length(); //gets the length of the longest substring
         if(b==0)
         {
@@ -70,22 +72,22 @@ class KMP_Search
         }
         System.out.println(a+" "+b+" "+loc);
     }
-    String FindLongSubStr(String [] X, String [] Y, int m, int n)
+    String FindLongSubStr(String  X, String Y)
     {
-        int[][] LCSuff = new int[m + 1][n + 1];
- 
-        len = 0; //initialising len=0
- 
+        int[][] LCSuff = new int[T + 1][P + 1];
+        len = 0;
+        int f=0;
         int row = 0, col = 0;
-        for (int i = 0; i <= m; i++) 
-        {
-            for (int j = 0; j <= n; j++) 
+
+        for (int i = 0; i <= T; i++) 
+         {
+            for (int j = 0; j <= P; j++) 
             {
                 if (i == 0 || j == 0)
                 {
                     LCSuff[i][j] = 0;
                 }
-                else if (X[i-1].equals(Y[j-1])) 
+                else if (X.charAt(i-1)==Y.charAt(j-1)) 
                 {
                     LCSuff[i][j] = LCSuff[i - 1][j - 1] + 1;
                     if (len < LCSuff[i][j]) 
@@ -103,19 +105,39 @@ class KMP_Search
         }
         if (len == 0) 
         {
-            return " ";
+            f=1;
         }
+     
         String resultStr = "";
+     
         while (LCSuff[row][col] != 0) 
         {
-            resultStr = X[row - 1] + resultStr; 
+            resultStr = X.charAt(row-1) + resultStr; 
             --len;
- 
+     
             row--;
             col--;
         }
-        return resultStr;
+        if(resultStr.length()>1)
+        {
+            String newpat=Y.substring(0, resultStr.length());
+            resultStr=resultStr.trim();
+    
+            if(f==0 && resultStr.startsWith(newpat))
+            {
+                return newpat;
+            }
+            else
+            {
+                return "";  
+            }
+        }
+        else
+        {
+            return "";  
+        }
     }
+
 	int FindPrefix(String[] s)
     {
         int lps[] = new int[P];
