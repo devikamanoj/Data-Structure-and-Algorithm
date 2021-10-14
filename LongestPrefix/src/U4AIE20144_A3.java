@@ -13,8 +13,8 @@ public class U4AIE20144_A3
             text = in.nextLine();
             pattern = in.nextLine();
 
-            text=text.toLowerCase();
-            pattern=pattern.toLowerCase();
+            text=text.toUpperCase();
+            pattern=pattern.toUpperCase();
 
             KMP_Search obj = new KMP_Search();
             obj.PatternSearch(pattern, text);
@@ -49,13 +49,17 @@ class KMP_Search
         {
             pattern[i]=pat.charAt(i) + " ";
         }
+
         //FindLongSubStr(text, pat);
         a = FindPrefix(pattern);
-        String mat = FindLongSubStr(text, pat); //gets the longest pattern
-        mat=mat.replace(" ", "");
+
+        //gets the longest pattern
+        String mat = FindLongSubStr(text, pat); 
 
         int index = text.indexOf(mat);
-        int b = mat.length(); //gets the length of the longest substring
+
+        //gets the length of the longest substring
+        int b = mat.length(); 
         if(b==0)
         {
             loc=-1;
@@ -64,9 +68,11 @@ class KMP_Search
         {
             loc=index;
         }
+
+        // prints the output
         System.out.println(a+" "+b+" "+loc);
     }
-    String FindLongSubStr(String  X, String Y)
+    String FindLongSubStr(String  text, String Pattern)
     {
         String resultStr="";
         boolean f=false;
@@ -84,8 +90,8 @@ class KMP_Search
         }
         for(int i=tem;i<=P;i++)
         {
-            resultStr=Y.substring(0,i);
-            if(X.contains(resultStr))
+            resultStr=Pattern.substring(0,i);
+            if(text.contains(resultStr))
             {
                 f=true;
                 str=resultStr;
