@@ -58,7 +58,7 @@ class KMP_Search
         int b = mat.length(); //gets the length of the longest substring
         if(b==0)
         {
-            loc=-1;;
+            loc=-1;
         }
         else
         {
@@ -71,7 +71,18 @@ class KMP_Search
         String resultStr="";
         boolean f=false;
         String str="";
-        for(int i=0;i<=P;i++)
+        int temp=FindPrefix(pattern);
+        int tem=0;
+
+        if(temp>0)
+        {
+            tem=temp;
+        }
+        else
+        {
+            tem=0;
+        }
+        for(int i=tem;i<=P;i++)
         {
             resultStr=Y.substring(0,i);
             if(X.contains(resultStr))
@@ -89,8 +100,7 @@ class KMP_Search
             return "";
         }
     }
-
-	int FindPrefix(String[] s)
+	int FindPrefix(String [] pattern)
     {
         int lps[] = new int[P];
         lps[0] = 0;
@@ -99,7 +109,7 @@ class KMP_Search
         
         while (i < P)
         {
-            if (s[i].equals(s[len]))
+            if (pattern[i].equals(pattern[len]))
             {
             	len++;
                 lps[i] = len;
@@ -113,22 +123,21 @@ class KMP_Search
                 }
                 else
                 {
-                    lps[i] = 0;
+                    lps[i] = len;
                     i++;
                 }
             }
         }
         int res=0;
-        int max=lps[0];
-        for (int k=1;k<P;k++)
+        int count=0;
+        for (int k=0;k<P;k++)
         {
-           
-            if(lps[k]>max)
+            if(lps[k]==0)
             {
-                max=lps[k];
+                count++;
             }
         }
-        res=max;
+        res=pattern.length-count;
         return res;
     }
 }
