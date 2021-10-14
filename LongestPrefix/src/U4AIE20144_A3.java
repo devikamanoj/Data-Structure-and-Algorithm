@@ -13,12 +13,6 @@ public class U4AIE20144_A3
             text = in.nextLine();
             pattern = in.nextLine();
 
-            text=text.replace(" ", "");
-            pattern=pattern.replace(" ", "");
-
-            text=text.replaceAll("[^a-zA-Z0-9]", "");
-	        pattern=pattern.replaceAll("[^a-zA-Z0-9]", "");
-
             text=text.toLowerCase();
             pattern=pattern.toLowerCase();
 
@@ -57,7 +51,7 @@ class KMP_Search
         }
         //FindLongSubStr(text, pat);
         a = FindPrefix(pattern);
-        String mat = FindLongSubStr(text, pat); //gets the longest patten
+        String mat = FindLongSubStr(text, pat); //gets the longest pattern
         mat=mat.replace(" ", "");
 
         int index = text.indexOf(mat);
@@ -74,67 +68,25 @@ class KMP_Search
     }
     String FindLongSubStr(String  X, String Y)
     {
-        int[][] LCSuff = new int[T + 1][P + 1];
-        len = 0;
-        int f=0;
-        int row = 0, col = 0;
-
-        for (int i = 0; i <= T; i++) 
-         {
-            for (int j = 0; j <= P; j++) 
+        String resultStr="";
+        boolean f=false;
+        String str="";
+        for(int i=0;i<=P;i++)
+        {
+            resultStr=Y.substring(0,i);
+            if(X.contains(resultStr))
             {
-                if (i == 0 || j == 0)
-                {
-                    LCSuff[i][j] = 0;
-                }
-                else if (X.charAt(i-1)==Y.charAt(j-1)) 
-                {
-                    LCSuff[i][j] = LCSuff[i - 1][j - 1] + 1;
-                    if (len < LCSuff[i][j]) 
-                    {
-                        len = LCSuff[i][j];
-                        row = i;
-                        col = j;
-                    }
-                }
-                else
-                {
-                    LCSuff[i][j] = 0;
-                }
+                f=true;
+                str=resultStr;
             }
         }
-        if (len == 0) 
+        if(f==true)
         {
-            f=1;
-        }
-     
-        String resultStr = "";
-     
-        while (LCSuff[row][col] != 0) 
-        {
-            resultStr = X.charAt(row-1) + resultStr; 
-            --len;
-     
-            row--;
-            col--;
-        }
-        if(resultStr.length()>1)
-        {
-            String newpat=Y.substring(0, resultStr.length());
-            resultStr=resultStr.trim();
-    
-            if(f==0 && resultStr.startsWith(newpat))
-            {
-                return newpat;
-            }
-            else
-            {
-                return "";  
-            }
+            return str;
         }
         else
         {
-            return "";  
+            return "";
         }
     }
 
@@ -155,15 +107,15 @@ class KMP_Search
             }
             else
             {
-            	 if (len != 0)
-                 {
-                     len = lps[len-1];
-                 }
-                 else
-                 {
-                     lps[i] = 0;
-                     i++;
-                 }
+            	if (len != 0)
+                {
+                    len = lps[len-1];
+                }
+                else
+                {
+                    lps[i] = 0;
+                    i++;
+                }
             }
         }
         int res=0;
