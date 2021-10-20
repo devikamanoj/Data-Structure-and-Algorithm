@@ -14,44 +14,67 @@ public class U4AIE20144
             String[] string = str.split(" ");
             String ts=string[1];
             int len=Integer.parseInt(ts);
+
+            ArrayList<String> newstr = new ArrayList<String>(len+2);
+            for(int j=2;j<len+2;j++)
+            {
+                newstr.add(string[j]);
+            }
+          //  System.out.print(newstr+" ");
             if(string[0].startsWith("a"))
             {
-                for(int j=2;j<len;j++)
+
+                for(int j=0;j<len;j++)
                 {
-                    SpellingCorrection.insert(string[j]);
+                    SpellingCorrection.insert(newstr.get(j),j);
                 }
             }
+            SpellingCorrection.print();
             if(string[0].startsWith("d"))
             {
-                for(int j=2;j<len;j++)
+                for(int j=0;j<len;j++)
                 {
-                    SpellingCorrection.delete(string[j]);
+                    SpellingCorrection.delete(newstr.get(j));
                 }
             }
             if(string[0].startsWith("f"))
             {
-                for(int j=2;j<len;j++)
+                for(int j=0;j<len;j++)
                 {
-                    SpellingCorrection.find(string[j]);
+                    SpellingCorrection.find(newstr.get(j));
                 }
             }
         }
+        SpellingCorrection.print();
         in.close();
     }
-    
 }
 class SpellingCorrection
 {
-    static void insert(String string)
-    {
+    static Hashtable<String,Integer> HT = new Hashtable<String,Integer>();
 
+    static void insert(String string,int j)
+    {
+        HT.put(string,j);
     }
     static void delete(String string)
     {
-
+        HT.remove(string);
     }
     static void find(String string)
     {
+        //HT.containsKey(string);
+    }
+    static void print()
+    {
+        System.out.println("maps");
+        for (Map.Entry<String, Integer> entry : HT.entrySet()) 
+        {
+            String key = entry.getKey();
 
+            System.out.print(" " + key );
+
+        }
+        System.out.println();
     }
 }
