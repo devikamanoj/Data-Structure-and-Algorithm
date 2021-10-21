@@ -9,17 +9,15 @@ public class U4AIE20144
     {
         Scanner in=new Scanner(System.in);
         int n=3;
-        //in.nextLine();
         for(int i=0;i<n;i++)
         {
             str=in.nextLine();
-            //str=str.toLowerCase(); 
+            str=str.toLowerCase(); 
             string = str.split(" ");
             String ts=string[1];
             len=Integer.parseInt(ts);
 
             ArrayListInsert();
-          //  System.out.print(newstr+" ");
             if(string[0].startsWith("a"))
             {
 
@@ -43,7 +41,6 @@ public class U4AIE20144
                 }
             }
         }
-       // SpellingCorrection.print();
         in.close();
     }
     static void ArrayListInsert()
@@ -59,7 +56,6 @@ class SpellingCorrection
 {
     static Hashtable<String,Integer> HT = new Hashtable<String,Integer>();
     static int count=0;
-    static String newstr="";
     static void insert(String string,int j)
     {
         HT.put(string,j);
@@ -76,67 +72,25 @@ class SpellingCorrection
         }
         else
         {
-            replacealphabet(string);
+            CheckElements(string);
             insertSpace(string);
-            swappingnei(string);
-            removeelem(string);
-            replaceElem(string);
+            replacealphabet(string);
             System.out.print(count+" ");
             count=0;
         }
     }
-    static void removeelem(String str)
-    {
-        String[] strSplit = str.split("");
-        ArrayList<String> strList = new ArrayList<String>(Arrays.asList(strSplit));
-        for(int i=0;i<strList.size();i++)
-        {
-            String temp=strList.get(i);
-            strList.remove(strList.get(i));
-            String newstr=listtoString(strList);
-            strList.add(i,temp);
-            if(HT.containsKey(newstr))
-            {
-               count++;
-            }
-        }
-
-    }
-
-    static void swappingnei(String str)
-    {
-        String[] strSplit = str.split("");
-        
-        ArrayList<String> strList = new ArrayList<String>(Arrays.asList(strSplit));
-
-        for(int i=0;i<strList.size();i++)
-        {
-            if(i+1<strList.size())
-            {
-                Collections.swap(strList, i, i+1);
-                newstr=listtoString(strList);
-                Collections.swap(strList, i+1, i);
-                if(HT.containsKey(newstr))
-                {
-                   count++;
-                } 
-            }
-        }
-    }
-    static String listtoString(ArrayList<String>strList)
-    {
-        String list = Arrays.toString(strList.toArray()).replace("[", "").replace("]", ""); 
-        list = list.replaceAll(", ", "");
-        return list;
-    }
-    static void insertSpace(String str)
+    static void CheckElements(String str)
     {
         String x,y;
-        for(int i=1;i<str.length();i++)
+        for(int j=0;j<str.length();j++)
         {
-            x=str.substring(0, i);
-            y=str.substring(i, str.length());
-            if(HT.containsKey(x)||HT.containsKey(y))
+            x=str.substring(0,j);
+            y=str.substring(j+1);
+            if(HT.containsKey(x+y))
+            {
+                count++;
+            }
+            if(j<str.length()-1 &&HT.containsKey(x+str.charAt(j+1)+str.charAt(j)+str.substring(j+2)))
             {
                 count++;
             }
@@ -145,82 +99,39 @@ class SpellingCorrection
     static void replacealphabet(String str)
     {
         char c;
-        String newstr,x,y;
-
-        for(int i=0;i<str.length();i++)
+        for(int j=0;j<str.length();j++)
         {
-            x=str.substring(0, i);
-            y=str.substring(i,str.length());
-
             for(c = 'a'; c <= 'z'; ++c)
             {
-                newstr=x+c+y;
-                if(HT.containsKey(newstr))
+                if(SpellingCorrection.HT.containsKey(str.substring(0,j)+c+str.substring(j)))
                 {
                     count++;
                 }
-                else
+                if(SpellingCorrection.HT.containsKey(str.substring(0,j)+c+str.substring(j+1)))
                 {
-                    newstr=str;
+                    count++;
                 }
             }
         }
-        x=str.substring(0, str.length()-1);
-        y=str.substring(str.length()-1, str.length());
         for(c = 'a'; c <= 'z'; ++c)
         {
-            newstr=x+c+y;
-            if(HT.containsKey(newstr))
+            if(SpellingCorrection.HT.containsKey(str+c))
             {
                 count++;
-            }
-            else
-            {
-                newstr=str;
-            }
-        }
-        for(c = 'a'; c <= 'z'; ++c)
-        {
-            newstr=str+c;
-            if(HT.containsKey(newstr))
-            {
-                count++;
-            }
-            else
-            {
-                newstr=str;
             }
         }
     }
-    static void replaceElem(String str)
+    static void insertSpace(String str)
     {
-        char c;
-        String newstr;
-        
-        String[] strSplit = str.split("");
-        
-        ArrayList<String> strList = new ArrayList<String>(Arrays.asList(strSplit));
-        
-        String[] temp=new String[strList.size()];
-        strList.toArray(temp);
- 
-      //  Collections.copy(strList, temp);
-        for(int i=0;i<strList.size();i++)
+        String x,y;
+        for(int i=1;i<str.length();i++)
         {
-           strList = new ArrayList<String>(Arrays.asList(temp));
-
-            for(c = 'a'; c <= 'z'; ++c)
+            x=str.substring(0, i);
+            y=str.substring(i, str.length());
+            if(HT.containsKey(x) && HT.containsKey(y))
             {
-                String S=Character.toString(c);
-                strList.set(i, S);
-                newstr=listtoString(strList);
-                if(HT.containsKey(newstr))
-                {
-                   count++;
-                } 
+                count++;
             }
-
         }
-
     }
 }
