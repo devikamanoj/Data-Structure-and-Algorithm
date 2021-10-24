@@ -103,11 +103,11 @@ class SpellingCorrection
         {
             for(c = 'a'; c <= 'z'; ++c)
             {
-                if(SpellingCorrection.HT.containsKey(str.substring(0,j)+c+str.substring(j)))
+                if(HT.containsKey(str.substring(0,j)+c+str.substring(j)))
                 {
                     count++;
                 }
-                if(SpellingCorrection.HT.containsKey(str.substring(0,j)+c+str.substring(j+1)))
+                if(HT.containsKey(str.substring(0,j)+c+str.substring(j+1)))
                 {
                     count++;
                 }
@@ -115,7 +115,7 @@ class SpellingCorrection
         }
         for(c = 'a'; c <= 'z'; ++c)
         {
-            if(SpellingCorrection.HT.containsKey(str+c))
+            if(HT.containsKey(str+c))
             {
                 count++;
             }
