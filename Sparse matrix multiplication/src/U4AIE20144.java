@@ -12,14 +12,11 @@ public class U4AIE20144
         //System.out.println(m+" "+n+" "+p);
      //   sparseMult.arrayinit(A, B);
 
-        m=4;
-        n=3;
-        p=2;
-        int A[][]={{1,2,3},
-                    {4,5,6},
-                    {6,7,8},
-                    {7,8,9}};
-        int B[][]={{3,4},{5,6},{0,2}};
+        m=3;
+        n=2;
+        p=3;
+        int A[][]={ {4,0 },{ 0,5 },{ 0,0 } };
+        int B[][]={ {3,0,0},{ 0,0,6}};
         sparseMult.transpose(A, B);
     }
     static void SizeAllot(int [] size)
@@ -108,21 +105,72 @@ class sparseMult
     static void transpose(int [][]A, int [][]B)
     {
         int [][] AT=new int[U4AIE20144.n][U4AIE20144.m];
-        for (int i = 0; i < A.length-1; i++)
+        for (int i = 0; i < U4AIE20144.n; i++)
         {
-            for (int j = 0; j < A.length; j++)
+            for (int j = 0; j < U4AIE20144.m; j++)
             {
                 AT[i][j] = A[j][i];
             }
         }
         int [][] BT=new int[U4AIE20144.p][U4AIE20144.n];
-        for (int i = 0; i < B.length-1; i++)
+        for (int i = 0; i <U4AIE20144.p; i++)
         {
-            for (int j = 0; j < B.length; j++)
+            for (int j = 0; j <U4AIE20144.n; j++)
             {
                 BT[i][j] = B[j][i];
             }
         }
-    }
 
+    /*    System.out.print("Result matrix of AT is \n");
+        for (int i = 0; i < U4AIE20144.n; i++)
+        {
+            for (int j = 0; j < U4AIE20144.m; j++)
+            {
+                System.out.print(AT[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.print("Result matrix of BT is \n");
+        for (int i = 0; i < U4AIE20144.p; i++)
+        {
+            for (int j = 0; j <U4AIE20144.n; j++)
+            {
+                System.out.print(BT[i][j] + " ");
+            }
+            System.out.print("\n");
+        }*/
+        Multiplication(BT, AT);
+    }
+    static void Multiplication(int [][]BT, int[][]AT)
+    {
+        int [][] matrix = new int[U4AIE20144.p][U4AIE20144.m];
+       // System.out.println(U4AIE20144.p+" x "+U4AIE20144.m);
+        
+        for(int i = 0; i < U4AIE20144.p; i++) 
+        {    
+            for(int j = 0; j < U4AIE20144.m; j++)
+            {    
+             //   matrix[i][j]=0;      
+                for(int k = 0; k < U4AIE20144.n; k++)
+                {      
+                   // System.out.println(BT[i][k]+"   "+AT[k][j]);
+                    matrix[i][j] += BT[i][k] * AT[k][j];    
+
+                }
+                //System.out.print(matrix[i][j] + " ");  
+            }
+            
+        }  
+        System.out.println();
+        System.out.println();
+        for (int i = 0; i < U4AIE20144.p; i++) 
+        {
+            for (int j = 0; j < U4AIE20144.m; j++)
+            {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }
