@@ -17,7 +17,7 @@ public class U4AIE20144
         p=3;
         int A[][]={ {4,0 },{ 0,5 },{ 0,0 } };
         int B[][]={ {3,0,0},{ 0,0,6}};
-        sparseMult.transpose(A, B);
+        sparseMult.manipulation(A, B);
     }
     static void SizeAllot(int [] size)
     {
@@ -37,10 +37,25 @@ public class U4AIE20144
 }
 class sparseMult
 {    
-    int [][] A=U4AIE20144.A;
-    int [][] B=U4AIE20144.B;
-
     static int [] column,row,pointer;
+    static int [][] A=U4AIE20144.A;
+    static int [][] B=U4AIE20144.B;
+    static int m=U4AIE20144.m;
+    static int n=U4AIE20144.n;
+    static int p=U4AIE20144.p;
+    static int [][] matrix;
+    static int sum=0;
+    static int count=0;
+    static void manipulation(int [][] A,int[][] B)
+    {
+       // arrayinit(A, B);
+       // input();
+       transpose(A, B);
+        getsum(matrix);
+        getnonZero(matrix);
+
+        System.out.println(count+" "+sum);
+    }
     static void arrayinit(int [][] A, int [][] B)
     {
         int i,j;
@@ -89,10 +104,11 @@ class sparseMult
             row[i] = Integer.valueOf(R[i]);
         }
 
-      //  addingelem(column, pointer, row);
+        addingelem(column, pointer, row);
     }
-  /*  static void addingelem(int [] column, int [] pointer,int [] row)
+    static void addingelem(int [] column, int [] pointer,int [] row)
     {
+
         for(int i=0;i<column.length;i++)
         {
             for(int j=0;j<pointer.length-1;j++)
@@ -101,76 +117,64 @@ class sparseMult
 
             }
         }
-    }*/
+        transpose(A, B);
+    }
     static void transpose(int [][]A, int [][]B)
     {
-        int [][] AT=new int[U4AIE20144.n][U4AIE20144.m];
-        for (int i = 0; i < U4AIE20144.n; i++)
+        int [][] AT=new int[n][m];
+        for (int i=0; i<n; i++)
         {
-            for (int j = 0; j < U4AIE20144.m; j++)
+            for (int j=0; j<m; j++)
             {
                 AT[i][j] = A[j][i];
             }
         }
-        int [][] BT=new int[U4AIE20144.p][U4AIE20144.n];
-        for (int i = 0; i <U4AIE20144.p; i++)
+        int [][] BT=new int[p][n];
+        for (int i=0; i<p; i++)
         {
-            for (int j = 0; j <U4AIE20144.n; j++)
+            for (int j=0; j<n; j++)
             {
                 BT[i][j] = B[j][i];
             }
         }
-
-    /*    System.out.print("Result matrix of AT is \n");
-        for (int i = 0; i < U4AIE20144.n; i++)
-        {
-            for (int j = 0; j < U4AIE20144.m; j++)
-            {
-                System.out.print(AT[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
-
-        System.out.print("Result matrix of BT is \n");
-        for (int i = 0; i < U4AIE20144.p; i++)
-        {
-            for (int j = 0; j <U4AIE20144.n; j++)
-            {
-                System.out.print(BT[i][j] + " ");
-            }
-            System.out.print("\n");
-        }*/
         Multiplication(BT, AT);
     }
     static void Multiplication(int [][]BT, int[][]AT)
     {
-        int [][] matrix = new int[U4AIE20144.p][U4AIE20144.m];
-       // System.out.println(U4AIE20144.p+" x "+U4AIE20144.m);
-        
-        for(int i = 0; i < U4AIE20144.p; i++) 
+        matrix = new int[p][m];
+        for(int i=0; i<p; i++) 
         {    
-            for(int j = 0; j < U4AIE20144.m; j++)
-            {    
-             //   matrix[i][j]=0;      
-                for(int k = 0; k < U4AIE20144.n; k++)
+            for(int j=0; j<m; j++)
+            {       
+                for(int k=0; k<n; k++)
                 {      
-                   // System.out.println(BT[i][k]+"   "+AT[k][j]);
                     matrix[i][j] += BT[i][k] * AT[k][j];    
 
                 }
-                //System.out.print(matrix[i][j] + " ");  
             }
-            
-        }  
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < U4AIE20144.p; i++) 
+        }
+    }
+    static void getsum(int[][] matrix)
+    {
+        for (int i=0; i<p; i++) 
         {
-            for (int j = 0; j < U4AIE20144.m; j++)
+            for (int j=0; j<m; j++)
             {
-                System.out.print(matrix[i][j] + " ");
+                sum+=matrix[i][j];
             }
-            System.out.println();
+        }
+    }
+    static void getnonZero(int [][]matrix)
+    {
+        for (int i=0; i<p; i++) 
+        {
+            for (int j=0; j<m; j++)
+            {
+                if(matrix[i][j]!=0)
+                {
+                    count++;
+                }
+            }
         }
     }
 }
