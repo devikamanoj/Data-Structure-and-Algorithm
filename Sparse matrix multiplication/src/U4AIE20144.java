@@ -178,16 +178,10 @@ class sparseMult
     {
         int [][] matrix1=new int[p][m];
         x=0;
-        int [] res=new int[n];
+        ArrayList<Integer>res=new ArrayList<Integer>();
         while(x<n)
 		{
-			for (int i = 0; i < p; i++) 
-			{
-			    for (int j = 0; j < m; j++) 
-			    {
-                    matrix1[i][j]=0;
-			    }
-			}
+			arrayinit(matrix1, p, m);
             rankmult(AT, BT, matrix1);
 			int y=0;
 		    for ( int k = 0; k <p; k++) 
@@ -197,20 +191,23 @@ class sparseMult
 			    	if(matrix1[k][l]!=0)
 			    	{
 			    		y++;
-			    		res[x]=y;
+
 			    	}
-			    	  
 			    }
 			}
+            if(y!=0)
+            {
+                res.add(y);
+            }
 		    x++;
 		}
-        System.out.print(x+" ");
-        for(int i=0;i<res.length;i++)
+        System.out.print(res.size()+" ");
+        for(int i=0;i<res.size();i++)
         {
-            System.out.print(res[i]+" ");
+            System.out.print(res.get(i)+" ");
         }
     }
-    static void rankmult(int [][]AT,int [][]BT, int [][]matrix1)
+    static void rankmult(int [][]AT,int [][]B, int [][]matrix1)
     {
         for (int i = 0; i < p; i++) 
         {
@@ -218,8 +215,9 @@ class sparseMult
             {
                 for (int k = 0; k < n; k++)
                 {
-                    matrix1[i][j] += B[x][j]*AT[i][x]  ;
+                    matrix1[i][j] = B[x][j]*AT[i][x] ;
                 }
+
             }
         }
     }
