@@ -7,7 +7,6 @@ public class U4AIE20144
     public static void main(String[] args) throws Exception
     {
         Scanner in = new Scanner(System.in);
-
         ver=in.nextInt();
 
 
@@ -21,5 +20,6 @@ public class U4AIE20144
 }
 class Graph
 {
-
+    U4AIE20144 ob = new U4AIE20144();
+    
 }
