@@ -47,7 +47,7 @@ class sparseMult
         BT=transpose(B,n,p);
         matrix=Multiplication(BT, AT);
         
-        Rankmatrix(A, B);
+        Rankmatrix(A,B);
         System.out.println(getnonZero(matrix)+" "+getsum(matrix));
     
     }
