@@ -8,7 +8,6 @@ public class U4AIE20144
     {
         ver=in.nextInt();
         mat=new int [ver][ver];
-        mat=arrayinit(mat, ver, ver);
         ArrayList<Integer> values=new ArrayList<Integer>();
         in.nextLine();
         for(int i=0;i<ver;i++)
@@ -16,7 +15,6 @@ public class U4AIE20144
             String str = in.nextLine();
             values=StrToArray(str);
             Graph.main(str, values);
-
         }
         int op=in.nextInt();
         chooseOption(op);
@@ -61,18 +59,6 @@ public class U4AIE20144
             }
         }
     }
-    static int[][] arrayinit(int [][]mat, int r, int c)
-    {
-        // initialising all element in tha matrix A as 0
-        for(int i=0;i<r;i++)
-        {
-            for(int j=0;j<c;j++)
-            {
-                mat[i][j]=0;
-            }
-        }
-        return mat;
-    }
     static ArrayList<Integer> StrToArray(String str)
     {
         String temp[]=str.split(" ");
@@ -95,9 +81,7 @@ class Graph
     static void MatrixDevelop(int[][]mat,ArrayList<Integer> values)
     {
         int row=values.get(0);
-        int Noelem=values.get(1);
-
-        for(int i=2;i<=Noelem+3;i++)
+        for(int i=2;i<values.size();i++)
         {
             int col=values.get(i);
             i++;
@@ -136,7 +120,7 @@ class Graph
                 }
             }
         }
-        System.out.print(weight);
+        System.out.print(weight+" ");
     }
     static void nonzeroelem()
     {
@@ -154,11 +138,10 @@ class Graph
                 }
             }
         }
-        System.out.print(nonzero);
+        System.out.print(nonzero+" ");
     }
     static void weight(ArrayList<Integer> arr)
     {
-        int num=arr.get(0);
         for(int i=1;i<=arr.size()-1;i++)
         {
             int r=arr.get(i);
@@ -173,7 +156,6 @@ class Graph
         int num=arr.get(0);
         for(int i=1;i<=num;i++)
         {
-           // System.out.println(arr.get(i));
             for(int j=0;j<size;j++)
             {
                 if(mat[j][arr.get(i)-1] !=0)
