@@ -42,3 +42,19 @@ You will need to construct a hash table by inserting and deleting some words as 
 (v) Look for every pair of words that can be formed by inserting a space anywhere into the given string. If you find both the words of a pair that was formed in the hash table, then that pair of words will become a suggestion.
 
 Your output is the letter Y if the given string is found in the hash table. If it is not found, your output is the count of suggestions for spelling corrections found by you in the hash table. Assume that only the 26 lower case English alphabet will be used in all strings
+
+## SPARSE MATRIX MANIPULATION
+This exercise involves manipulation of sparse matrices. Given two sparse matrices A (m x n) & B (n x p), you need to transpose both and then multiply BT (p x n) with AT (n x m). BT is the transpose of B and AT is the transpose of A. The matrices will be specified using the doubly compressed sparse column (DCSC) format.
+
+Ideally, you should manipulate the matrices using the DCSC format itself. However, you are welcome to convert them to any other format (CSC / Triples / etc.) if you prefer. You may also use libraries such as numpy and ndarray. After transposing the two matrices, you need to compute their product (BT . AT) as a sum of non-zero rank-1 matrices, i.e., sum of outer products of non-zero columns in BT with their corresponding non-zero rows in AT.
+
+Your output will be the following, all in one line:
+
+• Number of non-zero rank-1 matrices (outer products) computed
+
+• Number of non-zero elements in each of the rank-1 matrices computed
+
+• Number of non-zero elements in the final product matrix
+
+• Sum of all the elements in the final product matrix
+
