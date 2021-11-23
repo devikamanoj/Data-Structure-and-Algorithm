@@ -2,12 +2,10 @@ import java.util.*;
 public class U4AIE20144
 {
     static int ver;
-    static int [][] graph;
     static int [][] mat;
-
+    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) throws Exception
     {
-        Scanner in = new Scanner(System.in);
         ver=in.nextInt();
         mat=new int [ver][ver];
         mat=arrayinit(mat, ver, ver);
@@ -18,10 +16,10 @@ public class U4AIE20144
             String str = in.nextLine();
             values=StrToArray(str);
             Graph.main(str, values);
-            int op=in.nextInt();
-            chooseOption(op);
 
         }
+        int op=in.nextInt();
+        chooseOption(op);
         in.close();
     }
     static void chooseOption(int op)
@@ -30,12 +28,20 @@ public class U4AIE20144
         {
             case 1:
             {
-                Graph.degree();
+                in.nextLine();
+                String str = in.nextLine();
+                ArrayList<Integer> arr= new ArrayList<Integer>();
+                arr=StrToArray(str);
+                Graph.degree(arr);
                 break;
             }
             case 2:
             {
-                Graph.weight();
+                in.nextLine();
+                String str = in.nextLine();
+                ArrayList<Integer> arr= new ArrayList<Integer>();
+                arr=StrToArray(str);
+                Graph.weight(arr);
                 break;
             }
             case 3:
@@ -54,7 +60,6 @@ public class U4AIE20144
                 break;
             }
         }
-
     }
     static int[][] arrayinit(int [][]mat, int r, int c)
     {
@@ -81,19 +86,11 @@ public class U4AIE20144
 }
 class Graph
 {
+    static int size =U4AIE20144.ver;
     static int [][] mat=U4AIE20144.mat;
     static void main(String str, ArrayList<Integer> values)
     {
         MatrixDevelop(mat, values);
-        for (int i = 0; i < mat.length; i++)
-        {
-            for (int j = 0; j < mat[i].length; j++)
-            {
-                System.out.print(mat[i][j] + " ");
-            }
-            System.out.println();
-        }
-
     }
     static void MatrixDevelop(int[][]mat,ArrayList<Integer> values)
     {
@@ -109,23 +106,84 @@ class Graph
     }
     static void uppertriangle()
     {
-
+        for(int i= 0;i<size;i++)
+        {
+            for(int j=0;j<size;j++)
+            {
+                if(i<=j)
+                {
+                    if(mat[i][j] !=0)
+                    {
+                        System.out.println((i+1)+" "+(j+1)+" "+mat[i][j]);
+                    }
+                }
+            }
+        }
     }
     static void cumulativeWeight()
     {
-
+        int weight=0;
+        for(int i= 0;i<size;i++)
+        {
+            for(int j=0;j<size;j++)
+            {
+                if(i>=j)
+                {
+                    if(mat[i][j] !=0)
+                    {
+                        weight+=mat[i][j];
+                    }
+                }
+            }
+        }
+        System.out.print(weight);
     }
     static void nonzeroelem()
     {
-
+        int nonzero=0;
+        for(int i= 0;i<size;i++)
+        {
+            for(int j=0;j<size;j++)
+            {
+                if(i>=j)
+                {
+                    if(mat[i][j] !=0)
+                    {
+                        nonzero++;
+                    }
+                }
+            }
+        }
+        System.out.print(nonzero);
     }
-    static void weight()
+    static void weight(ArrayList<Integer> arr)
     {
-
+        int num=arr.get(0);
+        for(int i=1;i<=arr.size()-1;i++)
+        {
+            int r=arr.get(i);
+            i++;
+            int c=arr.get(i);
+            System.out.print(mat[r-1][c-1]+" ");
+        }
     }
-    static void degree()
+    static void degree(ArrayList<Integer> arr)
     {
-
+        int degree=0;
+        int num=arr.get(0);
+        for(int i=1;i<=num;i++)
+        {
+           // System.out.println(arr.get(i));
+            for(int j=0;j<size;j++)
+            {
+                if(mat[j][arr.get(i)-1] !=0)
+                {
+                    degree++;
+                }
+            }
+            System.out.print(degree+" ");
+            degree=0;
+        }
+        
     }
-
 }
