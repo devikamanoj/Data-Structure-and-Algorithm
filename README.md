@@ -58,3 +58,16 @@ Your output will be the following, all in one line:
 
 • Sum of all the elements in the final product matrix
 
+## GRAPH DATA STRUCTURE TRANSFORMATION
+
+This assignment involves transforming an edge-weighted simple undirected graph represented as an adjacency list into an adjacency matrix representation. The elements of the adjacency matrix will contain the edge weights. The input will specify the adjacency information of each vertex along with the edge weights, one vertex per row. This will be followed by an output option in the form of a number ranging from 1 to 5. For each option, the expected output is different as explained below:
+
+Option (1): Output the degrees of the vertices specified in the next line.
+
+Option (2): Output the edge weights of the edges specified in the next line.
+
+Option (3): Output the number of non-zero elements in the lower triangle of the adjacency matrix representation.
+
+Option (4): Output the cumulative weight of all edges in the graph.
+
+Option (5): Output the upper triangle of the adjacency matrix of the graph in triples (single linear list) format in row-major order.
