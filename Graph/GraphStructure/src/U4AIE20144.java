@@ -165,7 +165,6 @@ class Graph
             }
             System.out.print(degree+" ");
             degree=0;
-        }
-        
+        }  
     }
 }
