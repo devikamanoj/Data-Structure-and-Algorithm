@@ -42,3 +42,32 @@ You will need to construct a hash table by inserting and deleting some words as 
 (v) Look for every pair of words that can be formed by inserting a space anywhere into the given string. If you find both the words of a pair that was formed in the hash table, then that pair of words will become a suggestion.
 
 Your output is the letter Y if the given string is found in the hash table. If it is not found, your output is the count of suggestions for spelling corrections found by you in the hash table. Assume that only the 26 lower case English alphabet will be used in all strings
+
+## SPARSE MATRIX MANIPULATION
+This exercise involves manipulation of sparse matrices. Given two sparse matrices A (m x n) & B (n x p), you need to transpose both and then multiply BT (p x n) with AT (n x m). BT is the transpose of B and AT is the transpose of A. The matrices will be specified using the doubly compressed sparse column (DCSC) format.
+
+Ideally, you should manipulate the matrices using the DCSC format itself. However, you are welcome to convert them to any other format (CSC / Triples / etc.) if you prefer. You may also use libraries such as numpy and ndarray. After transposing the two matrices, you need to compute their product (BT . AT) as a sum of non-zero rank-1 matrices, i.e., sum of outer products of non-zero columns in BT with their corresponding non-zero rows in AT.
+
+Your output will be the following, all in one line:
+
+• Number of non-zero rank-1 matrices (outer products) computed
+
+• Number of non-zero elements in each of the rank-1 matrices computed
+
+• Number of non-zero elements in the final product matrix
+
+• Sum of all the elements in the final product matrix
+
+## GRAPH DATA STRUCTURE TRANSFORMATION
+
+This assignment involves transforming an edge-weighted simple undirected graph represented as an adjacency list into an adjacency matrix representation. The elements of the adjacency matrix will contain the edge weights. The input will specify the adjacency information of each vertex along with the edge weights, one vertex per row. This will be followed by an output option in the form of a number ranging from 1 to 5. For each option, the expected output is different as explained below:
+
+Option (1): Output the degrees of the vertices specified in the next line.
+
+Option (2): Output the edge weights of the edges specified in the next line.
+
+Option (3): Output the number of non-zero elements in the lower triangle of the adjacency matrix representation.
+
+Option (4): Output the cumulative weight of all edges in the graph.
+
+Option (5): Output the upper triangle of the adjacency matrix of the graph in triples (single linear list) format in row-major order.
