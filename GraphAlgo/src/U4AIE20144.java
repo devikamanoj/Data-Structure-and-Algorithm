@@ -16,7 +16,41 @@ public class U4AIE20144
             values=StrToArray(str);
             Graph.main(values);
         }
+        //int op = in.nextInt();
+       // Options(op);
+      //  in.close();
         Graph.print(graph);
+    }
+    static void Options(int op)
+    {
+        switch(op)
+        {
+            case 1:
+            {
+
+                break;
+            }
+            case 2:
+            {
+
+                break;
+            }
+            case 3:
+            {
+
+                break;
+            }
+            case 4:
+            {
+
+                break;
+            }
+            case 5:
+            {
+
+                break;
+            }  
+        }
     }
     static ArrayList<String> StrToArray(String str)
     {
