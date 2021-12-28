@@ -71,3 +71,19 @@ Option (3): Output the number of non-zero elements in the lower triangle of the 
 Option (4): Output the cumulative weight of all edges in the graph.
 
 Option (5): Output the upper triangle of the adjacency matrix of the graph in triples (single linear list) format in row-major order.
+
+## UNION-FIND ALGORITHM
+
+This assignment will evaluate your understanding of the Union-Find data structures and algorithms discussed in the class. The input to your program is a set of nodes denoted with integer keys and the instructions on how to combine these nodes using union commands. This is followed by an output option along with its parameters if any. The details of the various output options along with any parameters wherever applicable are described in the input and output format sections.
+
+You are expected to use the weighted quick-union algorithm when executing the union command, i.e., always make the root of the smaller tree as a child of the root of the larger tree. In addition, if the two trees are of the same size, make the root with the larger key as the parent of the other root. Note: This is important; otherwise, your output may not match with the expected output.
+
+• The letter N. You are required to print the number of disjoint sets present, i.e., the number of trees present in the forest.
+
+• The letter Z followed by a number (k) followed by k integer keys separated by space. You are required to print the size of the tree to which each of the k nodes (whose keys are listed) belongs.
+
+• The letter F followed by a number (k) followed by k integer keys separated by space. You are required to run the find command on each of the k nodes whose keys are listed and print the output.
+
+• The letter D followed by a number (k) followed by k integer keys separated by space. You are required to print the depth of each of the k nodes whose keys are listed. Note: The depth of the root node is zero.
+
+• The letter S followed by a number (k) followed by k integer keys separated by space. You are required to print the number of siblings of each of the k nodes whose keys are listed.
