@@ -26,7 +26,7 @@ public class U4AIE20144
             String let= find.get(0);
             int num = Integer.parseInt(find.get(1));
 
-           /* switch(let)
+            switch(let)
             {
                 case "Z":
                 {
@@ -60,7 +60,7 @@ public class U4AIE20144
                     }
                     break;
                 }
-            }*/
+            }
         }
         else
         {
@@ -110,34 +110,32 @@ class UnionFind
     {
         int root_P1=find(P1);
         int root_P2=find(P2);
-        int c1 = Child[root_P1];
-        int c2 = Child[root_P2];
         if(root_P1==root_P2)
         {
             return;
         }
-        if(c1<c2)
+        if( Child[root_P1]<Child[root_P2])
         {
-            Parent[c1]=c2;
-            c2 += c1;
+            Parent[root_P1]=root_P2;
+            Child[root_P2] +=  Child[root_P1];
         }
-        else if(c1==c2)
+        else if( Child[root_P1]==Child[root_P2])
         {
             if(root_P1>root_P2)
             {
-                Parent[c2]=c1;
-                c1+=c2;
+                Parent[root_P2]= root_P1;
+                 Child[root_P1]+=Child[root_P2];
             }
             else
             {
-                Parent[c1]=c2;
-                c2 += c1;
+                Parent[root_P1]=root_P2;
+                Child[root_P2] +=  Child[root_P1];
             }
         }
         else
         {
-            Parent[c2]=c1;
-            c1+=c2;
+            Parent[root_P2]= root_P1;
+             Child[root_P1]+=Child[root_P2];
         }
     }
     int find(int elem)//return root of the element
@@ -156,8 +154,8 @@ class UnionFind
         int i=1;
         while(i<=Integer.parseInt(Elements.get(0)))
         {
-            System.out.println("Element: "+Elements.get(i));
-            System.out.println("root: "+find(Integer.parseInt(Elements.get(i)))+"\n");
+        //    System.out.println("Element: "+Elements.get(i));
+        //    System.out.println("root: "+find(Integer.parseInt(Elements.get(i)))+"\n");
             if(find(Integer.parseInt(Elements.get(i)))==Integer.parseInt(Elements.get(i)))
             {
                 C++;
