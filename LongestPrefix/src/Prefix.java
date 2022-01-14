@@ -1,5 +1,5 @@
 import java.util.*;
-public class U4AIE20144_A3
+public class Prefix
 {
     static String text;
     static String pattern;

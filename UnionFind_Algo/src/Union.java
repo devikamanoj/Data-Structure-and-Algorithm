@@ -1,5 +1,5 @@
 import java.util.*;
-public class U4AIE20144
+public class Union
 {
     static Scanner in = new Scanner(System.in);
     static ArrayList<String> find=new ArrayList<String>();
@@ -168,9 +168,9 @@ class UnionFind
     {
         int j=1;
         C=0;
-        while(j<=Integer.parseInt(U4AIE20144.Elements.get(0)))
+        while(j<=Integer.parseInt(Union.Elements.get(0)))
         {
-            if(find(Integer.parseInt(U4AIE20144.Elements.get(j)))==find(Integer.parseInt(find.get(i+2))))
+            if(find(Integer.parseInt(Union.Elements.get(j)))==find(Integer.parseInt(find.get(i+2))))
             {
                 C++;
             }
@@ -193,9 +193,9 @@ class UnionFind
         int j=1;
         int rootG=find(Integer.parseInt(find.get(i+2)));
         int countG=FC;
-        while(j<=Integer.parseInt(U4AIE20144.Elements.get(0)))
+        while(j<=Integer.parseInt(Union.Elements.get(0)))
         {
-            int rootN=find(Integer.parseInt(U4AIE20144.Elements.get(j)));
+            int rootN=find(Integer.parseInt(Union.Elements.get(j)));
             int countN=FC;
             if(rootG==rootN && countG==countN)
             {

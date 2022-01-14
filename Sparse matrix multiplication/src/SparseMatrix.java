@@ -1,5 +1,5 @@
 import java.util.*;
-public class U4AIE20144
+public class SparseMatrix
 {
     static Scanner in = new Scanner(System.in);
     static int m,n,p;
@@ -29,14 +29,14 @@ public class U4AIE20144
 class sparseMult
 {    
     static int [] column,row,pointer,Num,res;
-    static int [][] A=U4AIE20144.A; static int [][] B=U4AIE20144.B;
-    static int m=U4AIE20144.m; static int n=U4AIE20144.n; static int p=U4AIE20144.p;
+    static int [][] A=SparseMatrix.A; static int [][] B=SparseMatrix.B;
+    static int m=SparseMatrix.m; static int n=SparseMatrix.n; static int p=SparseMatrix.p;
     static int [][] matrix,AT,BT;
     static int x=0;
 
     static void manipulation(int [][] A,int[][] B)
     {
-        U4AIE20144.in.nextLine();
+        SparseMatrix.in.nextLine();
         A=arrayinit(A,m,n);
         B=arrayinit(B,n,p);
         input();
@@ -67,7 +67,7 @@ class sparseMult
     static void input()
     {
 
-        String col = U4AIE20144.in.nextLine();
+        String col = SparseMatrix.in.nextLine();
         String C[]= col.split(" ");
         column=new int[C.length];
         for (int i = 0; i < C.length; i++) 
@@ -75,7 +75,7 @@ class sparseMult
             column[i] = Integer.valueOf(C[i]);
         }
 
-        String poin = U4AIE20144.in.nextLine();
+        String poin =SparseMatrix.in.nextLine();
         String [] p = poin.split(" ");
         pointer=new int[p.length];
         for (int i = 0; i < p.length; i++) 
@@ -83,7 +83,7 @@ class sparseMult
             pointer[i] = Integer.valueOf(p[i]);
         }
 
-        String Row = U4AIE20144.in.nextLine();
+        String Row = SparseMatrix.in.nextLine();
         String [] R = Row.split(" ");
         row=new int[R.length];
         for (int i = 0; i < R.length; i++) 
@@ -91,7 +91,7 @@ class sparseMult
             row[i] = Integer.valueOf(R[i]);
         }
 
-        String num = U4AIE20144.in.nextLine();
+        String num = SparseMatrix.in.nextLine();
         String [] N = num.split(" ");
         Num=new int[N.length];
         for (int i = 0; i < N.length; i++) 

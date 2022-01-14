@@ -1,5 +1,5 @@
 import java.util.*;
-public class U4AIE20144 
+public class SpellCorr
 {
     static String str;
     static ArrayList<String> newstr ;

@@ -1,5 +1,5 @@
 import java.util.*;
-public class U4AIE20144
+public class GraphST
 {
     static int ver;
     static int [][] mat;
@@ -72,8 +72,8 @@ public class U4AIE20144
 }
 class Graph
 {
-    static int size =U4AIE20144.ver;
-    static int [][] mat=U4AIE20144.mat;
+    static int size =GraphST.ver;
+    static int [][] mat=GraphST.mat;
     static void main(String str, ArrayList<Integer> values)
     {
         MatrixDevelop(mat, values);
