@@ -1,9 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "SpellingCorrections/src",
-        "Sparse matrix multiplication/src",
-        "LongestPrefix/src",
-        "Graph/GraphStructure/src",
-        "UnionFind_Algo/src"
-    ]
-}
